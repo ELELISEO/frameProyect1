@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-function Modal({ isOpen, onClose }) {
+function ModalVali({ isOpen, onClose }) {
   if (!isOpen) return null; // Si el modal no está abierto, no renderiza nada
 
   return (
@@ -15,4 +15,4 @@ function Modal({ isOpen, onClose }) {
   );
 }
 
-export default Modal;
+export default ModalVali;
