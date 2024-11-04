@@ -1,10 +1,13 @@
 import React from 'react'
 
-const Taskbar = () => {
+const Taskbar = ( {seccion} ) => {
     return (
         <>
-            <div className='bg-black w-96 h-full text-white text-3xl'>
-                barra de tareas
+            <div className='bg-black w-[18rem] h-auto text-white text-2xl'>
+               <div className='flex items-center text-left pl-5 h-[5rem]'>
+                {seccion}
+                </div>
+                
             </div>
         </>
     )

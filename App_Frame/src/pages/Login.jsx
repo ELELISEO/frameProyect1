@@ -93,7 +93,7 @@ export const Login = () => {
           </div>
 
         </section>
-    <AlertModal isVisible={isAlert} onClose={handleAlert}/>
+        <AlertModal isVisible={isAlert} onClose={handleAlert} />
       </main>
     </>)
 }
