@@ -5,7 +5,7 @@ import SearchModal from '../components/searchModal/SearchModal'
 import EliminiarT from '../components/eliminarT/EliminiarT'
 
 
-const PageInitial = () => {
+const Employees = () => {
   const [modBusqueda, setModBusqueda] = useState(false)
   const [vaciar, setVaciar] = useState(false)
   let seccionT = ["PAGINA PRINCIPAL", "INVENTARIO", "ALMACEN", "EMPLEADOS", "SALIR"]
@@ -21,7 +21,7 @@ const PageInitial = () => {
       <main className='h-screen w-screen'>
         <section className='flex h-full w-full'>
           <div className='flex flex-col justify-center items-center bg-color1'>
-            {seccionT.map((seccion, index) => (<Taskbar key={index} index={index} indexB={0} seccion={seccion} />))}
+            {seccionT.map((seccion, index) => (<Taskbar key={index} index={index} indexB={3} seccion={seccion} />))}
           </div>
           <div className='h-full w-full bg-color7 flex justify-center items-center flex-col'>
           <SearchModal isOpen={modBusqueda} onClose={closeModBusqeuda}/>
@@ -45,4 +45,4 @@ const PageInitial = () => {
   )
 }
 
-export default PageInitial
+export default Employees
