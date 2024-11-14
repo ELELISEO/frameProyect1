@@ -6,6 +6,7 @@ import { Login } from './pages/Login';
 import Inventory from './pages/Inventory';
 import Storage from './pages/Storage';
 import Employees from './pages/Employees';
+import Cobro from './pages/Cobro';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="Inventory" element={ <Inventory /> } />
         <Route path="Storage" element={ <Storage /> } />
         <Route path="Employees" element={ <Employees/> } />
+        <Route path="Charge" element={ <Cobro/> } />
     </Routes>
     </BrowserRouter>
   )
