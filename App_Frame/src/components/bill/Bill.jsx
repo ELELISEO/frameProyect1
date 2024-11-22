@@ -1,10 +1,21 @@
 import React from 'react'
 
-export const Bill = ({billete}) => { //Propiedad de bilete. SE DEFINE BILLETE
-  return (
+
+export const Bill = ({src}) => { //Propiedad de bilete. SE DEFINE BILLETE
+  {/*return (
     <>
-     <div className='bg-gray-400 h-32 w-80 m-5'>{billete}</div> {/*Manda a llamar billete*/}
-    </>
-   
+     <div className='bg-color6 h-32 w-80 m-6'>{billete}</div> {/*Manda a llamar billete}
+    </> */}
+     return (
+      <>
+          <div className='bg-color11 w-80 h-32 mt-6'>
+          <img
+            src= {src}
+            className="w-80 h-32"
+          />
+          </div>
+      </>
   )
+   
+  
 }
