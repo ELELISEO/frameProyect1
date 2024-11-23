@@ -6,10 +6,11 @@ import { IoReturnUpBack } from "react-icons/io5";
 
 
 export default function Cobro() {
-  let billetes1 = ['/billete20.jpeg','/billete100.jpeg','/billete20.jpeg'] //Arreglo vacio billetes
-  let billetes2 = ['/billete100.jpeg'," "," "]
+  let billetes1 = ['/billete20.jpeg','/billete50.jpeg','/billete100.jpeg'] //Arreglo Billetes
+  let billetes2 = ['/billete200.jpeg','/billete500.jpeg','/billete10000.jpeg']
 
-  let monedas = [" "," ", " ", " "," "] //monedas
+  let monedas = ['/moneda1.jpeg','/moneda2.jpeg','/moneda5.jpeg','/moneda10.jpeg',''] //Arreglo Monedas
+
   return (
     <>
     <main className='h-screen w-screen'>
@@ -44,7 +45,7 @@ export default function Cobro() {
 
           <div className='bg-white flex flex-col h-full w-1/2'> {/*DERECHA*/}
           <div className='flex-col'> {/*MAYBEEEE*/}
-          <div className='flex mb-2 mt-3 ml-2 mr-3'> {/*DIV BILLETES*/}
+          <div className='flex my-2 mx-1 gap-6 justify-center'> {/*DIV BILLETES*/}
             <div>
           {billetes1.map((src,index) => (<Bill key={index} src={src} index={index}/>))} 
           {/*Llenas arreglo con propiedades billete e index con la funcion arrow de Bill asisgnando sus propiedadess de bill asi misma*/}
@@ -53,15 +54,15 @@ export default function Cobro() {
           {billetes2.map((src,index) => (<Bill key={index} src={src} index={index}/>))}
           </div>
           </div>
-          <div className='flex justify-center mt-3 mb-1'> {/*DIV MONEDAS*/}
-            {monedas.map((monedas,index) => (<Coin key={index} index={index} monedas={monedas}/>))}
+          <div className='flex justify-center mt-5 mb-1 ml-28 mr-0 gap-2'> {/*DIV MONEDAS*/}
+            {monedas.map((src,index) => (<Coin key={index} src={src} index={index}/>))}
 
           </div>
           </div>
           <div>
           <div className='flex justify-around items-center mt-14 p-0'> {/*DIV BOTONES*/}
           <button className='w-56 h-12 bg-color9 text-white font-bold text-lg'> {/*BOTON REGRESAR*/}
-          <IoReturnUpBack className='flex justify-center'/> {/*NOOOTA: Jugar con propiedades (tamaño, color etc.) de texto*/}
+          {/*<IoReturnUpBack className='flex justify-center'/> NOOOTA: Jugar con propiedades (tamaño, color etc.) de texto*/}
             REGRESAR
             </button>
           <button className='w-56 h-12 bg-color10 text-white justify-center font-bold text-lg'> {/*BOTON FINALIZAR*/}

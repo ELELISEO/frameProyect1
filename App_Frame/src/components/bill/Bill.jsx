@@ -8,10 +8,10 @@ export const Bill = ({src}) => { //Propiedad de bilete. SE DEFINE BILLETE
     </> */}
      return (
       <>
-          <div className='bg-color11 w-80 h-32 mt-6'>
+          <div className='w-72 h-24 mt-6 justify-center items-center'>
           <img
             src= {src}
-            className="w-80 h-32"
+            className="w-72 h-24"
           />
           </div>
       </>
