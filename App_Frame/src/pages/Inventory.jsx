@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import SendSpace from '../components/sendSpace/SendSpace'
 import Taskbar from '../components/taskbar/Taskbar'
 import SearchModal from '../components/searchModal/SearchModal'
+import { IoSearch } from "react-icons/io5"; //LUPA
+import { AiOutlineStock } from "react-icons/ai"; //GANANCIA
 
 
 const Inventory = () => {
@@ -22,7 +24,7 @@ const Inventory = () => {
           </div>
           <div className='h-full w-full bg-color7 flex justify-center items-center flex-col'>
           <SearchModal isOpen={modBusqueda} onClose={closeModBusqeuda}/>
-            <form className='w-[65rem] flex justify-end'>
+            <form className='w-[65rem] flex justify-end'> <IoSearch />
               <input placeholder='BUSQUEDA' 
               type='text'
               name='busqueda'
@@ -31,7 +33,8 @@ const Inventory = () => {
             </form>
             <SendSpace />
             <div className='w-[65rem] h-[3rem] flex justify-end gap-10'>
-              <button className='bg-color8 h-[3rem] w-[11rem] text-white rounded-br-3xl'>GANANCIA</button>
+              <button className='bg-color8 h-[3rem] w-[11rem] text-white rounded-br-3xl font-bold text-lg flex items-center gap-4 justify-center'><AiOutlineStock />
+              GANANCIA</button>
             </div>
           </div>
         </section>

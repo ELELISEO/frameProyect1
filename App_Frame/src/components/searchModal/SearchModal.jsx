@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const SearchModal = ({ isOpen, onClose, }) => {
   if (!isOpen) return null
   return (

@@ -3,6 +3,9 @@ import SendSpace from '../components/sendSpace/SendSpace'
 import Taskbar from '../components/taskbar/Taskbar'
 import SearchModal from '../components/searchModal/SearchModal'
 import EliminiarT from '../components/eliminarT/EliminiarT'
+import { IoSearch } from "react-icons/io5"; //LUPA
+import { MdDone } from "react-icons/md"; //COBRAR
+import { RxCross2 } from "react-icons/rx"; //ELIMINAR
 
 
 const Employees = () => {
@@ -25,7 +28,7 @@ const Employees = () => {
           </div>
           <div className='h-full w-full bg-color7 flex justify-center items-center flex-col'>
           <SearchModal isOpen={modBusqueda} onClose={closeModBusqeuda}/>
-            <form className='w-[65rem] flex justify-end'>
+            <form className='w-[65rem] flex justify-end'> <IoSearch />
               <input placeholder='BUSQUEDA' 
               type='text'
               name='busqueda'
@@ -35,8 +38,8 @@ const Employees = () => {
             <SendSpace />
             <EliminiarT isOpen={vaciar} onClose={handleCloseVaciar}/>
             <div className='w-[65rem] h-[3rem] flex justify-end gap-10'>
-              <button onClick={handleVaciar} className='bg-color9 h-[3rem] w-[11rem] text-white'>ELIMINAR</button>
-              <button className='bg-color10 h-[3rem] w-[11rem] text-white rounded-br-3xl'>COBRAR</button>
+              <button onClick={handleVaciar} className='bg-color9 h-[3rem] w-[11rem] text-white font-bold text-lg flex items-center gap-4 justify-center'><RxCross2 />ELIMINAR</button>
+              <button className='bg-color10 h-[3rem] w-[11rem] text-white rounded-br-3xl font-bold text-lg flex items-center gap-4 justify-center'><MdDone />COBRAR</button>
             </div>
           </div>
         </section>

@@ -7,10 +7,10 @@ const Coin = ({src}) => {
     </>*/
       return (
         <>
-            <div className='flex justify-center items-center w-24 h-24 rounded-full mx-4'>
+            <div className='flex justify-center w-24 h-20 rounded-full mx-6'>
             <img
               src= {src}
-              className="w-20 h-20 rounded-full mx-4"
+              className="w-24 h-20 rounded-full mx-6"
             />
             </div>
         </>

@@ -3,6 +3,12 @@ import SendSpace from '../components/sendSpace/SendSpace'
 import Taskbar from '../components/taskbar/Taskbar'
 import SearchModal from '../components/searchModal/SearchModal'
 import EliminiarT from '../components/eliminarT/EliminiarT'
+import { RiUserAddLine } from "react-icons/ri"; //Agregar
+import { LiaEditSolid } from "react-icons/lia"; //Editar
+import { RxCross2 } from "react-icons/rx"; //Eliminar
+import { MdDone } from "react-icons/md"; //COBRAR
+import { IoSearch } from "react-icons/io5"; //BUSQUEDA
+
 
 
 const Storage = () => {
@@ -27,8 +33,8 @@ const Storage = () => {
           
           <SearchModal isOpen={modBusqueda} onClose={closeModBusqeuda}/>
             <form className='w-[65rem] flex justify-between'>
-            <button className='bg-color8 h-[3rem] w-[11rem] text-white'>AGREGAR</button>
-              <input placeholder='BUSQUEDA' 
+            <button className='bg-color8 h-[3rem] w-[11rem] text-white font-bold text-lg flex items-center gap-4 justify-center'><RiUserAddLine />AGREGAR</button>
+              <input placeholder='BUSQUEDA' //BARRAAAA
               type='text'
               name='busqueda'
               onFocus={openModBusqueda}
@@ -36,10 +42,13 @@ const Storage = () => {
             </form>
             <SendSpace />
             <EliminiarT isOpen={vaciar} onClose={handleCloseVaciar}/>
-            <div className='w-[65rem] h-[3rem] flex justify-end gap-10'>
-              <button className='bg-color11 h-[3rem] w-[11rem] text-white'>EDITAR</button>
-              <button onClick={handleVaciar} className='bg-color9 h-[3rem] w-[11rem] text-white'>ELIMINAR</button>
-              <button className='bg-color10 h-[3rem] w-[11rem] text-white rounded-br-3xl'>COBRAR</button>
+            <div className='w-[65rem] h-[3rem] flex justify-end gap-10'> {/*DIV BOTONES*/}
+              <button className='bg-color11 h-[3rem] w-[11rem] text-white font-bold text-lg flex items-center gap-4 justify-center'><LiaEditSolid />
+              EDITAR</button>
+              <button onClick={handleVaciar} className='bg-color9 h-[3rem] w-[11rem] text-white font-bold text-lg flex items-center gap-4 justify-center'><RxCross2 />
+              ELIMINAR</button>
+              <button className='bg-color10 h-[3rem] w-[11rem] text-white rounded-br-3xl font-bold text-lg flex items-center gap-4 justify-center'><MdDone />
+              COBRAR</button>
             </div>
           </div>
         </section>
