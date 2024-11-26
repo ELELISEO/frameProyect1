@@ -11,9 +11,7 @@ const Taskbar = ({ seccion, indexB, index }) => {
         }else
         navigate("/Login")
     }
-    console.log(index);
     
-
     return (
         <>
             <div className='w-[18rem] h-auto text-white text-2xl'>

@@ -4,16 +4,21 @@ import Taskbar from '../components/taskbar/Taskbar'
 import SearchModal from '../components/searchModal/SearchModal'
 import { IoSearch } from "react-icons/io5"; //LUPA
 import { AiOutlineStock } from "react-icons/ai"; //GANANCIA
+import Earning from '../components/earning/Earning';
 
 
 const Inventory = () => {
   const [modBusqueda, setModBusqueda] = useState(false)
+  const [ganancia, setGanancia] = useState(false)
   let seccionT = ["PAGINA PRINCIPAL", "INVENTARIO", "ALMACEN", "EMPLEADOS", "SALIR"]
 
   const openModBusqueda = () => setModBusqueda(true)
   const closeModBusqeuda = () => setModBusqueda(false)
 
- 
+  const closeModGanancia = () => setGanancia(false)
+
+  
+  const handleGanancia = () => setGanancia(true)
 
   return (
     <>
@@ -24,16 +29,22 @@ const Inventory = () => {
           </div>
           <div className='h-full w-full bg-color7 flex justify-center items-center flex-col'>
           <SearchModal isOpen={modBusqueda} onClose={closeModBusqeuda}/>
-            <form className='w-[65rem] flex justify-end'> <IoSearch />
-              <input placeholder='BUSQUEDA' 
-              type='text'
-              name='busqueda'
-              onFocus={openModBusqueda}
-              className='bg-color6 h-[3rem] w-[24rem] rounded-br-none rounded-tl-3xl rounded-tr-3xl rounded-bl-3xl focus:rounded-bl-none duration-75 text-end p-5 outline-none z-10'/>
+          <form className='w-[65rem] flex justify-end'>
+              <div className='relative w-[24rem]'> {/* Asegura que el contenedor sea relative */}
+                <IoSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-color2 z-50" /> {/* Posiciona el ícono */}
+                <input
+                  placeholder='BUSQUEDA'
+                  type='text'
+                  name='busqueda'
+                  onFocus={openModBusqueda}
+                  className='bg-color6 h-[3rem] w-[24rem] rounded-br-none rounded-tl-3xl rounded-tr-3xl rounded-bl-3xl focus:rounded-bl-none duration-75 text-end p-5 pl-12 outline-none z-40 relative'
+                /> {/* Agrega padding-left para espacio del ícono */}
+              </div>
             </form>
             <SendSpace />
+            <Earning isOpen={ganancia} onClose={closeModGanancia} />
             <div className='w-[65rem] h-[3rem] flex justify-end gap-10'>
-              <button className='bg-color8 h-[3rem] w-[11rem] text-white rounded-br-3xl font-bold text-lg flex items-center gap-4 justify-center'><AiOutlineStock />
+              <button onClick={handleGanancia} className='bg-color8 h-[3rem] w-[11rem] text-white rounded-br-3xl font-bold text-lg flex items-center gap-4 justify-center'><AiOutlineStock />
               GANANCIA</button>
             </div>
           </div>
