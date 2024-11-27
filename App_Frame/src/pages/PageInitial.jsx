@@ -39,8 +39,6 @@ const PageInitial = () => {
 
   const handleVaciar = () => setVaciar(true)
   const handleCloseVaciar = () => setVaciar(false)
-
-  console.log(busqueda);
   
 
   return (
