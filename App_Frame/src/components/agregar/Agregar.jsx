@@ -4,7 +4,7 @@ import { GrLinkNext } from 'react-icons/gr'
 import { LiaMinusSolid } from 'react-icons/lia'
 
 
-const Agregar = ({isOpen, onClose}) => {
+const Agregar = ({isOpen, onClose, idProducto}) => {
     
     const [count, setCount] = useState(0);
 
@@ -15,8 +15,24 @@ const Agregar = ({isOpen, onClose}) => {
         const value = parseInt(e.target.value, 10);
         setCount(isNaN(value) ? 0 : Math.max(0, value));
       };
+
+
+      const handleLogin = async () => {
+            const response = await fetch('http://localhost:5000/api/mensaje', {
+            method: 'POST', // Indicamos que es una petición POST
+            headers: {
+              'Content-Type': 'application/json', // Definimos que estamos enviando JSON
+            },
+            body: JSON.stringify({ }), // Convertimos las credenciales a JSON
+          });
+          const data = await response.json();
+          console.log('Respuesta JSON:', data);
+         
+      }
     
     if(!isOpen) return null
+    
+
   return (
     <>
      <div onClick={onClose} className='h-full w-[78rem] bg-black opacity-50 absolute z-50'></div>

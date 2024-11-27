@@ -15,17 +15,13 @@ import Agregar from '../components/agregar/Agregar'
 
 
 const PageInitial = () => {
+  const [busqueda, setBusqueda] = useState("")
   const [modBusqueda, setModBusqueda] = useState(false)
   const [vaciar, setVaciar] = useState(false)
   const [agregar, setAgregar] = useState(false)
 
   let seccionT = ["PAGINA PRINCIPAL", "INVENTARIO", "ALMACEN", "EMPLEADOS", "SALIR"]
   const navigate = useNavigate()
-
-
-
-
-
 
   const handleCobro = () => {
     navigate("/Charge")
@@ -44,6 +40,9 @@ const PageInitial = () => {
   const handleVaciar = () => setVaciar(true)
   const handleCloseVaciar = () => setVaciar(false)
 
+  console.log(busqueda);
+  
+
   return (
     <>
       <main className='h-screen w-screen'>
@@ -60,12 +59,13 @@ const PageInitial = () => {
                   placeholder='BUSQUEDA'
                   type='text'
                   name='busqueda'
+                  onChange={(e) => setBusqueda(e.target.value)}
                   onFocus={openModBusqueda}
                   className='bg-color6 h-[3rem] w-[24rem] rounded-br-none rounded-tl-3xl rounded-tr-3xl rounded-bl-3xl focus:rounded-bl-none duration-75 text-end p-5 pl-12 outline-none z-40 relative'
                 /> {/* Agrega padding-left para espacio del ícono */}
               </div>
             </form>
-            <Agregar isOpen={agregar} onClose={closeModAgregar}/>
+            <Agregar isOpen={agregar} onClose={closeModAgregar} idProducto={busqueda}/>
             <SendSpace />
             <EliminiarT isOpen={vaciar} onClose={handleCloseVaciar} />
             <div className='w-[65rem] h-[3rem] flex justify-end items-center p-6 gap-10 text-white font-bold text-lg'> {/* DIV BOTONES*/}

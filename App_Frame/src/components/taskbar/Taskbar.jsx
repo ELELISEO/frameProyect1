@@ -9,7 +9,7 @@ const Taskbar = ({ seccion, indexB, index }) => {
         if (paginas[index]) {
             navigate(paginas[index])
         }else
-        navigate("/Login")
+        navigate("/")
     }
     
     return (
