@@ -10,6 +10,7 @@ const Agregar = ({ isOpen, onClose, idProducto }) => {
   const [producto, setProducto] = useState();
   const [subtotal, setSubtotal] = useState(0)
 
+
   const handleIncrement = () => setCount(count + 1);
   const handleDecrement = () => setCount(count > 0 ? count - 1 : 0);
 
@@ -29,6 +30,9 @@ const Agregar = ({ isOpen, onClose, idProducto }) => {
 
 
   const getProducto = async () => {
+    if (idProducto === "") {
+      return null
+    }
     const id = parseInt(idProducto, 10)
     const response = await fetch(`http://localhost:5000/products/producto/${id}`, {
       method: 'GET', // Indicamos que es una petición POST
@@ -42,7 +46,6 @@ const Agregar = ({ isOpen, onClose, idProducto }) => {
     } else
       return null
   }
-
   useEffect(() => {
     const fetchProducto = async () => {
       if (idProducto) {
@@ -52,6 +55,34 @@ const Agregar = ({ isOpen, onClose, idProducto }) => {
     };
     fetchProducto();
   }, [idProducto]);
+
+  const sendVenta = async () =>{
+    try{const response = await fetch(`http://localhost:5000/products/lista`, {
+      method: 'POST', // Indicamos que es una petición POST
+      headers: {
+        'Content-Type': 'application/json', // Definimos que estamos enviando JSON
+      },
+      body: JSON.stringify({ id : idProducto, producto: producto.producto, cantidad : count, precio : subtotal}),
+    });
+    const data = await response.json();
+    if (data.status === 201) {
+      return true
+      
+    }else
+    return false
+    }catch(error){
+      console.log(error);
+    }
+  }
+
+  const crearVenta = () => {
+    const flag = sendVenta()
+    if (!flag) {
+      return
+    }
+    onClose()
+  }
+
 
   if (!isOpen) return null
 
@@ -73,7 +104,7 @@ const Agregar = ({ isOpen, onClose, idProducto }) => {
         </form>
         <div className='w-[15rem] h-[4rem] flex items-center justify-around'>
           <h1 className='text-2xl'>${subtotal}</h1>
-          <button className='flex justify-center items-center gap-4 bg-color10 w-[3rem] h-[3rem] text-white'>
+          <button onClick={crearVenta} className='flex justify-center items-center gap-4 bg-color10 w-[3rem] h-[3rem] text-white'>
             <GrLinkNext className='text-2xl' />
           </button>
         </div>
@@ -81,5 +112,4 @@ const Agregar = ({ isOpen, onClose, idProducto }) => {
     </>
   )
 }
-
 export default Agregar

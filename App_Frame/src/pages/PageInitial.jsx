@@ -27,7 +27,7 @@ const PageInitial = () => {
     navigate("/Charge")
   }
 
-  const handleOpen = () =>{
+  const handleOpen = () => {
     setAgregar(true)
     setModBusqueda(false)
   }
@@ -37,9 +37,24 @@ const PageInitial = () => {
 
   const openModBusqueda = () => setModBusqueda(true)
 
-  const handleVaciar = () => setVaciar(true)
+  const handleVaciar = async () => {
+    console.log("handleVaciar");
+
+    const response = await fetch(`http://localhost:5000/carrito/deleteAll`, {
+      method: 'DELETE', // Indicamos que es una petición POST
+      headers: {
+        'Content-Type': 'application/json', // Definimos que estamos enviando JSON
+      },
+    });
+    const data = await response.json();
+    if (data.status === 200) {
+      return
+    } else
+      return
+  }
+
   const handleCloseVaciar = () => setVaciar(false)
-  
+
 
   return (
     <>
@@ -49,7 +64,7 @@ const PageInitial = () => {
             {seccionT.map((seccion, index) => (<Taskbar key={index} index={index} indexB={0} seccion={seccion} />))}
           </div>
           <div className='h-full w-full bg-color7 flex justify-center items-center flex-col'>
-            <SearchModal isOpen={modBusqueda} onClose={() => handleOpen()}/>
+            <SearchModal isOpen={modBusqueda} onClose={() => handleOpen()} />
             <form className='w-[65rem] flex justify-end'>
               <div className='relative w-[24rem]'> {/* Asegura que el contenedor sea relative */}
                 <IoSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-color2 z-50" /> {/* Posiciona el ícono */}
@@ -63,7 +78,7 @@ const PageInitial = () => {
                 /> {/* Agrega padding-left para espacio del ícono */}
               </div>
             </form>
-            <Agregar isOpen={agregar} onClose={closeModAgregar} idProducto={busqueda}/>
+            <Agregar isOpen={agregar} onClose={closeModAgregar} idProducto={busqueda} />
             <SendSpace />
             <EliminiarT isOpen={vaciar} onClose={handleCloseVaciar} />
             <div className='w-[65rem] h-[3rem] flex justify-end items-center p-6 gap-10 text-white font-bold text-lg'> {/* DIV BOTONES*/}

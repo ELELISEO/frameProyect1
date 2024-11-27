@@ -89,12 +89,38 @@ const SendSpace = () => {
 };
 
 export default SendSpace;*/
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import RowProductos from '../rowProductos/RowProductos';
 import { productos } from '../../data/productos';
 
 const SendSpace = () => {
-  const ventas = productos;
+  const [ventas, setVentas] = useState([])
+
+  const getCarrito = async () => {
+    const response = await fetch(`http://localhost:5000/carrito/`, {
+      method: 'GET', // Indicamos que es una petición POST
+      headers: {
+        'Content-Type': 'application/json', // Definimos que estamos enviando JSON
+      },
+    });
+    const data = await response.json();
+    if (data.status === 200) {
+      return data.mensaje
+    } else
+      return null
+  }
+
+  useEffect(() => {
+    const fetchProducto = async () => {
+        const data = await getCarrito();
+        setVentas(data);
+    };
+    setInterval(function() {
+      fetchProducto();
+      // Tu función aquí
+      console.log("Esta función se ejecuta cada 10 segundos");
+  }, 100); // 10000 milisegundos = 10 segundos
+  }, []);
 
   return (
     <div className="bg-white h-[30rem] w-[65rem] m-5 overflow-hidden">
@@ -114,7 +140,7 @@ const SendSpace = () => {
                 CANTIDAD
               </th>
               <th className="bg-color1 sticky top-0 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                PRECIO
+                SUBTOTAL
               </th>
             </tr>
           </thead>
