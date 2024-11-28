@@ -10,11 +10,16 @@ import AgregarAlmacen from '../components/agregarAlmacen/AgregarAlamcen'
 import EditarAlmacen from '../components/editarAlmacen/EditarAlmacen'
 import SendSpaceAlmacen from '../components/sendSpaceAlmacen/SendSpaceAlmacen'
 import EliminiarTAlmacen from '../components/eliminarTAlmacen/EliminiarTAlmacen';
+import BusquedaAlmacen from '../components/busquedaAlmacen/BusquedaAlmacen';
+import SearchModalAlmacen from '../components/searchModalAlmacen/SearchModalAlmacen';
 
 
 
 const Storage = () => {
+  const [busqueda, setBusqueda] = useState("")
+  const [producto, setProducto] = useState()
   const [modBusqueda, setModBusqueda] = useState(false)
+  const [agregarC, setAgregarC] = useState(false)
   const [vaciar, setVaciar] = useState(false)
   const [agregar, setAgregar] = useState(false)
   const [editar, setEditar] = useState(false)
@@ -25,6 +30,15 @@ const Storage = () => {
     setEditar(false); // Cambia el estado a false
 };
 
+const handleOpen = async () => {
+  const producto = await getProducto()
+  if (!producto) {
+    setModBusqueda(false)
+  }
+  setProducto(producto)
+  setAgregarC(true)
+  setModBusqueda(false)
+}
 
   const closeModAgregar = () => setAgregar(false)
   const handleAgregar = () => setAgregar(true)
@@ -38,6 +52,22 @@ const Storage = () => {
   const handleCloseVaciar = () => setVaciar(false) 
 
 
+  const getProducto = async () => {
+    const id = parseInt(busqueda, 10)
+    const response = await fetch(`http://localhost:5000/almacen/producto/${id}`, {
+      method: 'GET', // Indicamos que es una petición POST
+      headers: {
+        'Content-Type': 'application/json', // Definimos que estamos enviando JSON
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+    
+    if (data.status === 200) {
+      return data.mensaje
+    } else
+      return null
+  }
 
   return (
     <>
@@ -48,7 +78,7 @@ const Storage = () => {
           </div>
           <div className='h-full w-full bg-color7 flex justify-center items-center flex-col'>
           
-          <SearchModal isOpen={modBusqueda} onClose={closeModBusqeuda}/>
+          <SearchModalAlmacen isOpen={modBusqueda} onClose={() => handleOpen()}  onCloseOnly={() => setModBusqueda(false)}/>
           <AgregarAlmacen isOpen={agregar} onClose={closeModAgregar}/>
             <form className='w-[65rem] flex justify-between'>
             <button onClick={handleAgregar} type='button' className='bg-color8 h-[3rem] w-[11rem] text-white font-bold text-lg flex items-center gap-4 justify-center'><RiUserAddLine />AGREGAR</button>
@@ -58,11 +88,15 @@ const Storage = () => {
                   placeholder='BUSQUEDA'
                   type='text'
                   name='busqueda'
+                  value={busqueda}
+                  onChange={(e) => setBusqueda(e.target.value)}
                   onFocus={openModBusqueda}
+                  autoComplete="off" 
                   className='bg-color6 h-[3rem] w-[24rem] rounded-br-none rounded-tl-3xl rounded-tr-3xl rounded-bl-3xl focus:rounded-bl-none duration-75 text-end p-5 pl-12 outline-none z-40 relative'
                 /> {/* Agrega padding-left para espacio del ícono */}
               </div>
             </form>
+            {producto && <BusquedaAlmacen onClose={setAgregarC} isOpen={agregarC} idProducto={busqueda} nameProduct={producto.producto} priceProduct={producto.precio} clearBusqueda={() => setBusqueda("")}/>}
             <SendSpaceAlmacen />
             <EditarAlmacen isOpen={editar}  onClose={closeModEditar} />
             <EliminiarTAlmacen isOpen={vaciar} onClose={handleCloseVaciar}/>

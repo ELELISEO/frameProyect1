@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import AlertModal from '../components/alertModal/AlertModal';
 
 export const Login = () => {
-  const [usuario, setUsuario] = useState("")
+  const [id, setId] = useState("")
   const [contraseña, setContraseña] = useState("")
   const [isModalOpen, setModalOpen] = useState(false);
   const [isModalOpen2, setModalOpen2] = useState(false);
@@ -23,11 +23,11 @@ export const Login = () => {
   }
 
   const handleLogin = async () => {
-    if (usuario === "" && contraseña === "") {
+    if (id === "" && contraseña === "") {
       setModalOpen(true)
       setModalOpen2(true)
     }
-    else if (usuario === "") {
+    else if (id === "") {
       setModalOpen(true)
     } else if (contraseña === "") {
       setModalOpen2(true)
@@ -38,7 +38,7 @@ export const Login = () => {
         headers: {
           'Content-Type': 'application/json', // Definimos que estamos enviando JSON
         },
-        body: JSON.stringify({ USUARIO: usuario, CONTRASEÑA: contraseña }), // Convertimos las credenciales a JSON
+        body: JSON.stringify({ id: id, CONTRASEÑA: contraseña }), // Convertimos las credenciales a JSON
       });
       const data = await response.json();
       console.log('Respuesta JSON:', data);
@@ -73,7 +73,7 @@ export const Login = () => {
               <input
                 type="text"
                 placeholder="USUARIO"
-                onChange={e => setUsuario(e.target.value)}
+                onChange={e => setId(e.target.value)}
                 className="w-72 h-[2.5rem] bg-color6 mb-5 p-4 rounded-full rounded-br-none font-bold text-black text-sm outline-none"
               />
               <ModalVali isOpen={isModalOpen} onClose={handleModal} />

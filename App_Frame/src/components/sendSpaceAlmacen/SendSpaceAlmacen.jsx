@@ -19,35 +19,6 @@ const SendSpaceAlmacen = () => {
       } else
         return null
     }
-
-/*const getProveedor = async () => {
-  try {
-    const response = await fetch(`http://localhost:5000/almacen/almacen/proveedores`, {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    });
-    const data = await response.json();
-    if (data.status === 200) {
-      return data.mensaje; // Suponiendo que este es un array
-    }
-    return []; // Devuelve un array vacío si no hay datos
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    return []; // Devuelve un array vacío en caso de error
-  }
-};*/
-
-  
-   /* useEffect(() => {
-      const fetchProducto = async () => {
-          const data = await getProveedor();
-          setData(data);
-          console.log(almacen);
-          
-          
-      };
-      fetchProducto() // 10000 milisegundos = 10 segundos
-    }, []);*/
   
     useEffect(() => {
       const fetchProducto = async () => {
@@ -56,7 +27,6 @@ const SendSpaceAlmacen = () => {
       };
       setInterval(function() {
         fetchProducto();
-        // Tu función aquí
         console.log("Esta función se ejecuta cada 10 segundos");
     }, 100);    }, []);
     
@@ -89,7 +59,7 @@ const SendSpaceAlmacen = () => {
             <tbody>
             {almacen.map((almacen, index) => (
                 <RowProductsAlmacen key={index} id={almacen.id} contacto={almacen.contacto} producto={almacen.producto} cantidad={almacen.cantidad}
-                proveedor={almacen.proveedor} precio={almacen.proveedor}/>  ))}  
+                proveedor={almacen.proveedor} precio={almacen.precio}/>  ))}  
             </tbody>
           </table>
         </div>

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import RowProductsEmpleados from '../rowProductsEmpleados/RowProductsEmpleados';
 
 const SendSpaceEmpleado = () => {
-    const [ventas, setVentas] = useState([])
+    const [empleado, setData] = useState([])
 
-    const getCarrito = async () => {
-      const response = await fetch(`http://localhost:5000/carrito/`, {
+    const getEmpleados = async () => {
+      const response = await fetch(`http://localhost:5000/empleado/empleados`, {
         method: 'GET', // Indicamos que es una petición POST
         headers: {
           'Content-Type': 'application/json', // Definimos que estamos enviando JSON
@@ -19,12 +19,13 @@ const SendSpaceEmpleado = () => {
     }
   
     useEffect(() => {
-      const fetchProducto = async () => {
-          const data = await getCarrito();
-          setVentas(data);
+      const fetchEmpleado = async () => {
+          const data = await getEmpleados();
+          setData(data);
+
       };
       setInterval(function() {
-        fetchProducto();
+        fetchEmpleado();
         // Tu función aquí
         console.log("Esta función se ejecuta cada 10 segundos");
     }, 100); // 10000 milisegundos = 10 segundos
@@ -48,8 +49,8 @@ const SendSpaceEmpleado = () => {
               </tr>
             </thead>
             <tbody>
-              {ventas.map((venta, index) => (
-                <RowProductsEmpleados key={index} id={venta.id} producto={venta.producto} cantidad={venta.cantidad} precio={venta.precio}
+              {empleado.map((empleado, index) => (
+                <RowProductsEmpleados key={index} id={empleado.id} nombre={empleado.nombre} apellido={empleado.apellido}
                 />
               ))}
             </tbody>

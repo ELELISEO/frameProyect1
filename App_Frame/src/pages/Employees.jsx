@@ -9,6 +9,7 @@ import { LiaEditSolid } from 'react-icons/lia'
 import AgregarEmpleado from '../components/agregarEmpleado/AgregarEmpleado'
 import EditarEmpleado from '../components/editarEmpleado/EditarEmpleado'
 import SendSpaceEmpleado from '../components/sendSpaceEmpleado/SendSpaceEmpleado'
+import EliminiarTEmpleados from '../components/eliminarTEmpleados/EliminiarTEmpleados';
 
 
 const Employees = () => {
@@ -56,7 +57,7 @@ const Employees = () => {
             </form>
             <SendSpaceEmpleado />
             <EditarEmpleado isOpen={editar} onClose={closeModEditar} />
-            <EliminiarT isOpen={vaciar} onClose={handleCloseVaciar}/>
+            <EliminiarTEmpleados isOpen={vaciar} onClose={handleCloseVaciar}/>
             <div className='w-[65rem] h-[3rem] flex justify-end gap-10'>
             <button onClick={handleEditar} className='bg-color11 h-[3rem] w-[11rem] text-white font-bold text-lg flex items-center gap-4 justify-center'><LiaEditSolid />
             EDITAR</button>

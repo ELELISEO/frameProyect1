@@ -5,7 +5,6 @@ import { IoReturnUpBackOutline } from 'react-icons/io5'
 const AgregarAlmacen = ({ isOpen, onClose }) => {
     const [contacto, setContacto] = useState("")
     const [producto, setProducto] = useState("")
-    const [cantidad, setCantidad] = useState("")
     const [proveedor, setProveedor] = useState("")
     const [precio, setPrecio] = useState("")
 
