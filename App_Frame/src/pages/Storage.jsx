@@ -105,8 +105,6 @@ const handleOpen = async () => {
               EDITAR</button>
               <button onClick={handleVaciar} className='bg-color9 h-[3rem] w-[11rem] text-white font-bold text-lg flex items-center gap-4 justify-center'><RxCross2 />
               ELIMINAR</button>
-              <button className='bg-color10 h-[3rem] w-[11rem] text-white rounded-br-3xl font-bold text-lg flex items-center gap-4 justify-center'><MdDone />
-              PEDIR</button>
             </div>
           </div>
         </section>

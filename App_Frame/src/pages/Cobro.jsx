@@ -100,12 +100,13 @@ const Cobro = () => {
   const [cobro, setCobro] = useState("");
   const [productos, setProductos] = useState([]);
   const [total, setTotal] = useState(0);
-const [cambio, setCambio] = useState(0); 
+  const [cambio, setCambio] = useState(0); 
 
-  // Función para obtener los productos desde la API
   const getProductos = async () => {
     const response = await fetch('http://localhost:5000/carrito/');
     const data = await response.json();
+    console.log(data);
+    
     if (data.status === 200) {
       return data.mensaje;
     } else {
@@ -121,43 +122,29 @@ const [cambio, setCambio] = useState(0);
     fetchData();
   }, []);
 
-  /*// Sumar los subtotales de todos los productos
   useEffect(() => {
-    const totalSum = productos.reduce((sum, producto) => sum + producto.precio, 0);
-    const roundedTotal = parseFloat(totalSum.toFixed(2)); // Redondea a 2 decimales
-    setTotal(roundedTotal);
-  }, [productos]);
-
-  useEffect(() => {
-    const nuevoCambio = cobro - total;
-    setCambio(nuevoCambio >= 0 ? parseFloat(nuevoCambio.toFixed(2)) : 0);
-  }, [cobro, total]);
-  */
-  useEffect(() => {
-    // Calcula el total de los productos, redondeado a 2 decimales
     const totalSum = productos.reduce((sum, producto) => sum + producto.precio, 0);
     setTotal(parseFloat(totalSum.toFixed(2)));
   }, [productos]);
 
   useEffect(() => {
-    // Calcula el cambio cuando el cobro cambia
-    const cobroNumber = parseFloat(cobro) || 0;  // Convierte el cobro a número
+    const cobroNumber = parseFloat(cobro) || 0;  
     const nuevoCambio = cobroNumber - total;
-    setCambio(nuevoCambio >= 0 ? parseFloat(nuevoCambio.toFixed(2)) : 0); // Si el cobro es mayor o igual al total
+    setCambio(nuevoCambio >= 0 ? parseFloat(nuevoCambio.toFixed(2)) : 0); 
   }, [cobro, total]);
 
   const handleBilleteClick = (valor) => {
-    setCobro((prevCobro) => (parseFloat(prevCobro) || 0) + valor); // Sumar correctamente
+    setCobro((prevCobro) => (parseFloat(prevCobro) || 0) + valor); 
   };
   
   const handleMonedaClick = (valor) => {
-    setCobro((prevCobro) => (parseFloat(prevCobro) || 0) + valor); // Sumar correctamente
+    setCobro((prevCobro) => (parseFloat(prevCobro) || 0) + valor); 
   };
   
   const handleInputChange = (e) => {
-    const value = parseFloat(e.target.value); // Convertir el valor ingresado
+    const value = parseFloat(e.target.value); 
     if (!isNaN(value)) {
-      setCobro(value); // Actualizar el estado con el valor numérico
+      setCobro(value); 
     }
   };
 
@@ -165,30 +152,13 @@ const [cambio, setCambio] = useState(0);
     { src: '/billete20.jpeg', valor: 20 },
     { src: '/billete50.jpeg', valor: 50 },
     { src: '/billete100.jpeg', valor: 100 }
-  ]; // Arreglo Billetes
+  ]; 
   let billetes2 = [
     { src: '/billete200.jpeg', valor: 200 },
     { src: '/billete500.jpeg', valor: 500 },
     { src: '/billete10000.jpeg', valor: 10000 }
-  ]; // Arreglo Billetes 2
+  ]; 
   const navigate = useNavigate();
-
- /* // Maneja el clic de los billetes y actualiza el total cobrado
-const handleBilleteClick = (valor) => {
-  setCobro((prevCobro) => prevCobro + valor)  // Concatenar el valor al cobro
-}
-  const handleInputChange = (e) => {
-    const value = parseFloat(e.target.value);
-    if (!isNaN(value)) {
-      setCobro(value); // Actualiza el estado con el valor introducido
-    }
-  };
-  // Maneja el clic de las monedas y actualiza el total cobrado
-  const handleMonedaClick = (valor) => {
-    setCobro(cobro + valor);
-  };*/
-
-  // Maneja el botón de cancelar
   const handleCancelar = () => {
     navigate("/PageI");
   };
@@ -199,7 +169,32 @@ const handleBilleteClick = (valor) => {
     { src: '/moneda2.jpeg', valor: 2 },
     { src: '/moneda5.jpeg', valor: 5 },
     { src: '/moneda10.jpeg', valor: 10 }
-  ]; // Arreglo Monedas
+  ]; 
+
+  const insertarCarrito = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/cobro/insertar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+       body: JSON.stringify({ id: productos.id, producto: productos.producto, stock : 1,
+         venta : productos.cantidad, almacen: productos.cantidad, total : productos.subtotal})})
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        console.log(data.mensaje); // "Datos insertados correctamente"
+      } else {
+        console.error('Error:', data.mensaje);
+      }
+    } catch (error) {
+      console.error('Error al insertar el carrito:', error);
+    }
+  };
+  
+  insertarCarrito();
+  
 
   return (
     <main className="h-screen w-screen">
@@ -254,7 +249,7 @@ const handleBilleteClick = (valor) => {
                 <IoReturnUpBackOutline />
                 REGRESAR
               </button>
-              <button className="flex h-[3rem] w-[11rem] justify-center items-center bg-color10 p-6 gap-4">
+              <button onClick={insertarCarrito} className="flex h-[3rem] w-[11rem] justify-center items-center bg-color10 p-6 gap-4">
                 <MdDone />
                 FINALIZAR
               </button>

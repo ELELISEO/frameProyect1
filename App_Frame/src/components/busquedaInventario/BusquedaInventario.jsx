@@ -4,7 +4,7 @@ import { GrLinkNext } from 'react-icons/gr'
 import { LiaMinusSolid } from 'react-icons/lia'
 
 
-const BusquedaAlmacen = ({ isOpen, onClose, priceProduct, idProducto }) => {
+const BusquedaInventario = ({ isOpen, onClose, priceProduct, idProducto }) => {
   const [count, setCount] = useState(0); 
   const [subtotal, setSubtotal] = useState(0)
 
@@ -78,4 +78,4 @@ const editarCantidad = async () => {
     </>
   )
 }
-export default BusquedaAlmacen
+export default BusquedaInventario

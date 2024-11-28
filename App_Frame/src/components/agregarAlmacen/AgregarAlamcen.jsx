@@ -7,6 +7,9 @@ const AgregarAlmacen = ({ isOpen, onClose }) => {
     const [producto, setProducto] = useState("")
     const [proveedor, setProveedor] = useState("")
     const [precio, setPrecio] = useState("")
+    const [cantidad, setcantidad] = useState("")
+
+    
 
     const agregarProveedor = async () => {
         
@@ -16,9 +19,11 @@ const AgregarAlmacen = ({ isOpen, onClose }) => {
             headers: {
                 'Content-Type': 'application/json', // Definimos que estamos enviando JSON
             },
-            body: JSON.stringify({ contacto: contacto, producto: producto, proveedor: proveedor, precio: precio }),
+            body: JSON.stringify({ contacto: contacto, producto: producto, proveedor: proveedor, cantidad: cantidad, precio: precio }),
         });
         const data = await response.json();
+        console.log(data);
+        
         if (data.status === 200) {
             return data.mensaje
         } else

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const RowProductsInventario = ({id, producto, cantidad, precio}) => {
+const RowProductsInventario = ({id, producto, stock, venta, almacen, total}) => {
   
     return (
         <>
@@ -12,16 +12,16 @@ const RowProductsInventario = ({id, producto, cantidad, precio}) => {
                     {producto}
                 </td>
                 <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-700">
-                    {cantidad}
+                    {stock}
                 </td>
                 <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-700">
-                    {precio}
+                    {venta}
                 </td>
                 <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-700">
-                    {precio}
+                    {almacen}
                 </td>
                 <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-700">
-                    {precio}
+                    {total}
                 </td>
             </tr>
         </>

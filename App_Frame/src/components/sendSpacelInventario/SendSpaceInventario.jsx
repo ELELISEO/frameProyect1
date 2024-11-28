@@ -5,7 +5,7 @@ const SendSpaceInventario = () => {
     const [ventas, setVentas] = useState([])
 
   const getCarrito = async () => {
-    const response = await fetch(`http://localhost:5000/carrito/`, {
+    const response = await fetch(`http://localhost:5000/inventario/inventario`, {
       method: 'GET', // Indicamos que es una petición POST
       headers: {
         'Content-Type': 'application/json', // Definimos que estamos enviando JSON
@@ -25,8 +25,6 @@ const SendSpaceInventario = () => {
     };
     setInterval(function() {
       fetchProducto();
-      // Tu función aquí
-      console.log("Esta función se ejecuta cada 10 segundos");
   }, 100); // 10000 milisegundos = 10 segundos
   }, []);
 
@@ -58,7 +56,8 @@ const SendSpaceInventario = () => {
           </thead>
           <tbody>
             {ventas.map((venta, index) => (
-              <RowProductsInventario key={index} id={venta.id} producto={venta.producto} cantidad={venta.cantidad} precio={venta.precio}
+              <RowProductsInventario key={index} id={venta.id} producto={venta.producto} stock={venta.stock} venta={venta.cantidad}
+              almacen={venta.almacen_almacen} total={venta.precio}
               />
             ))}
           </tbody>

@@ -1,16 +1,22 @@
 import React, { useState } from 'react'
-import SendSpace from '../components/sendSpace/SendSpace'
 import Taskbar from '../components/taskbar/Taskbar'
 import SearchModal from '../components/searchModal/SearchModal'
 import { IoSearch } from "react-icons/io5"; //LUPA
 import { AiOutlineStock } from "react-icons/ai"; //GANANCIA
 import Earning from '../components/earning/Earning';
 import SendSpaceInventario from '../components/sendSpacelInventario/SendSpaceInventario';
+import BusquedaInventario from '../components/busquedaInventario/BusquedaInventario';
 
 
 const Inventory = () => {
   const [modBusqueda, setModBusqueda] = useState(false)
   const [ganancia, setGanancia] = useState(false)
+  const [busqueda, setBusqueda] = useState("")
+  const [producto, setProducto] = useState()
+  const [agregarC, setAgregarC] = useState(false)
+  const [vaciar, setVaciar] = useState(false)
+  const [agregar, setAgregar] = useState(false)
+  const [editar, setEditar] = useState(false)
   let seccionT = ["PAGINA PRINCIPAL", "INVENTARIO", "ALMACEN", "EMPLEADOS", "SALIR"]
 
   const openModBusqueda = () => setModBusqueda(true)
@@ -42,6 +48,7 @@ const Inventory = () => {
                 /> {/* Agrega padding-left para espacio del ícono */}
               </div>
             </form>
+            {producto && <BusquedaInventario onClose={setAgregarC} isOpen={agregarC} idProducto={busqueda} nameProduct={producto.producto} priceProduct={producto.precio} clearBusqueda={() => setBusqueda("")}/>}
             <SendSpaceInventario />
             <Earning isOpen={ganancia} onClose={closeModGanancia} />
             <div className='w-[65rem] h-[3rem] flex justify-end gap-10'>
