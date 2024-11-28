@@ -4,6 +4,12 @@ const app = express();
 const port = 5000;
 const cors = require('cors');
 
+const productsRouter = require("./routes/products.js")
+const carritoRouter = require("./routes/carrito.js")
+const almacenRoutes = require('./routes/almacen.js');
+const empleadosRoutes = require('./routes/empleados.js');
+const cobroRoutes = require('./routes/cobro.js');
+const inventarioRputes = require('./routes/inventario.js')
 app.use(cors());
 // Middleware para parsear JSON
 app.use(express.json());
@@ -13,12 +19,13 @@ app.get('/api/mensaje', async (req, res) => {
     const query = await db.query(`SELECT NOMBRE_U FROM usuarios`)
     res.json({ mensaje: query });
 });
+
 app.post('/api/mensaje', async (req, res) => {
     try {
-        const { USUARIO, CONTRASEÑA } = req.body
+        const { id, CONTRASEÑA } = req.body
         console.log(req.body);
         
-        const query = await db.query(`SELECT NOMBRE_U FROM usuarios WHERE NOMBRE_U = '${USUARIO}' AND CONTRASEÑA = ${CONTRASEÑA};`)
+        const query = await db.query(`SELECT id FROM admin WHERE id = '${id}' AND CONTRASEÑA = ${CONTRASEÑA};`)
         if (query.length > 0) {
             res.status(200).json({ status: 200, mensaje: query });
         } else
@@ -28,6 +35,13 @@ app.post('/api/mensaje', async (req, res) => {
 
     }
 });
+
+app.use("/products", productsRouter)
+app.use("/carrito", carritoRouter)
+app.use("/almacen", almacenRoutes)
+app.use("/empleado", empleadosRoutes)
+app.use("/cobro", cobroRoutes)
+app.use("/inventario", inventarioRputes)
 
 // Arrancar el servidor
 app.listen(port, () => {
