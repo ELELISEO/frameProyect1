@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
-import SendSpace from '../components/sendSpace/SendSpace'
 import Taskbar from '../components/taskbar/Taskbar'
 import SearchModal from '../components/searchModal/SearchModal'
-import EliminiarT from '../components/eliminarT/EliminiarT'
 import { RiUserAddLine } from "react-icons/ri"; //Agregar
 import { LiaEditSolid } from "react-icons/lia"; //Editar
 import { RxCross2 } from "react-icons/rx"; //Eliminar
@@ -10,6 +8,8 @@ import { MdDone } from "react-icons/md"; //COBRAR
 import { IoSearch } from "react-icons/io5"; //BUSQUEDA
 import AgregarAlmacen from '../components/agregarAlmacen/AgregarAlamcen'
 import EditarAlmacen from '../components/editarAlmacen/EditarAlmacen'
+import SendSpaceAlmacen from '../components/sendSpaceAlmacen/SendSpaceAlmacen'
+import EliminiarTAlmacen from '../components/eliminarTAlmacen/EliminiarTAlmacen';
 
 
 
@@ -20,10 +20,15 @@ const Storage = () => {
   const [editar, setEditar] = useState(false)
   let seccionT = ["PAGINA PRINCIPAL", "INVENTARIO", "ALMACEN", "EMPLEADOS", "SALIR"]
 
+  const closeModEditar = () => {
+    console.log("Cerrando modal de editar...");
+    setEditar(false); // Cambia el estado a false
+};
+
+
   const closeModAgregar = () => setAgregar(false)
   const handleAgregar = () => setAgregar(true)
 
-  const closeModEditar = () => setEditar(false)
   const handleEditar = () => setEditar(true)
 
   const openModBusqueda = () => setModBusqueda(true)
@@ -31,6 +36,8 @@ const Storage = () => {
 
   const handleVaciar = () => setVaciar(true)
   const handleCloseVaciar = () => setVaciar(false) 
+
+
 
   return (
     <>
@@ -56,9 +63,9 @@ const Storage = () => {
                 /> {/* Agrega padding-left para espacio del ícono */}
               </div>
             </form>
-            <SendSpace />
-            <EditarAlmacen isOpen={editar} onClose={closeModEditar}/>
-            <EliminiarT isOpen={vaciar} onClose={handleCloseVaciar}/>
+            <SendSpaceAlmacen />
+            <EditarAlmacen isOpen={editar}  onClose={closeModEditar} />
+            <EliminiarTAlmacen isOpen={vaciar} onClose={handleCloseVaciar}/>
             <div className='w-[65rem] h-[3rem] flex justify-end gap-10'> {/*DIV BOTONES*/}
               <button onClick={handleEditar} className='bg-color11 h-[3rem] w-[11rem] text-white font-bold text-lg flex items-center gap-4 justify-center'><LiaEditSolid />
               EDITAR</button>

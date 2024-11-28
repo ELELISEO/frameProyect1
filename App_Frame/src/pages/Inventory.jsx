@@ -5,6 +5,7 @@ import SearchModal from '../components/searchModal/SearchModal'
 import { IoSearch } from "react-icons/io5"; //LUPA
 import { AiOutlineStock } from "react-icons/ai"; //GANANCIA
 import Earning from '../components/earning/Earning';
+import SendSpaceInventario from '../components/sendSpacelInventario/SendSpaceInventario';
 
 
 const Inventory = () => {
@@ -41,7 +42,7 @@ const Inventory = () => {
                 /> {/* Agrega padding-left para espacio del ícono */}
               </div>
             </form>
-            <SendSpace />
+            <SendSpaceInventario />
             <Earning isOpen={ganancia} onClose={closeModGanancia} />
             <div className='w-[65rem] h-[3rem] flex justify-end gap-10'>
               <button onClick={handleGanancia} className='bg-color8 h-[3rem] w-[11rem] text-white rounded-br-3xl font-bold text-lg flex items-center gap-4 justify-center'><AiOutlineStock />

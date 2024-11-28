@@ -1,8 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { GrLinkNext } from 'react-icons/gr'
 import { IoReturnUpBackOutline } from 'react-icons/io5'
 
 const AgregarAlmacen = ({ isOpen, onClose }) => {
+    const [contacto, setContacto] = useState("")
+    const [producto, setProducto] = useState("")
+    const [cantidad, setCantidad] = useState("")
+    const [proveedor, setProveedor] = useState("")
+    const [precio, setPrecio] = useState("")
+
+    const agregarProveedor = async () => {
+        
+        const response = await fetch(`http://localhost:5000/almacen/almacen`, {
+            
+            method: 'POST', // Indicamos que es una petición POST
+            headers: {
+                'Content-Type': 'application/json', // Definimos que estamos enviando JSON
+            },
+            body: JSON.stringify({ contacto: contacto, producto: producto, proveedor: proveedor, precio: precio }),
+        });
+        const data = await response.json();
+        if (data.status === 200) {
+            return data.mensaje
+        } else
+            return null
+        
+    }
+
+    const crearProveedor = () => {
+        const flag = agregarProveedor()
+        onClose()
+    if (!flag) {
+        return
+      }
+    } 
+    
+   
+    
+
     if (!isOpen) return null
     return (
         <>
@@ -12,15 +47,15 @@ const AgregarAlmacen = ({ isOpen, onClose }) => {
                 <div>
                     <form className='flex flex-col items-center justify-around h-[18rem]'>
                         <p className='text-left w-[35rem]'>CONTACTO</p>
-                        <input placeholder='ESTE CAMPO ES NECESARIO' className='bg-color6 h-[3rem] w-[35rem] outline-none p-3' />
+                        <input value={contacto} onChange={(e) => setContacto(e.target.value)} placeholder='ESTE CAMPO ES NECESARIO' className='bg-color6 h-[3rem] w-[35rem] outline-none p-3' />
                         <p className='text-left w-[35rem]'>PRODUCTO</p>
-                        <input placeholder='ESTE CAMPO ES NECESARIO' className='bg-color6 h-[3rem] w-[35rem] outline-none p-3' />
+                        <input value={producto} onChange={(e) => setProducto(e.target.value)} placeholder='ESTE CAMPO ES NECESARIO' className='bg-color6 h-[3rem] w-[35rem] outline-none p-3' />
                         <p className='text-left w-[35rem]'>PROVEEDOR</p>
-                        <input placeholder='ESTE CAMPO ES NECESARIO' className='bg-color6 h-[3rem] w-[35rem] outline-none p-3' />
+                        <input value={proveedor} onChange={(e) => setProveedor(e.target.value)} placeholder='ESTE CAMPO ES NECESARIO' className='bg-color6 h-[3rem] w-[35rem] outline-none p-3' />
                         <div className='flex w-[35rem] justify-between'>
                             <form className='flex flex-col'>
                                 <p className='text-left w-[15rem]'>PRECIO</p>
-                                <input placeholder='ESTE CAMPO ES NECESARIO' className='bg-color6 h-[3rem] w-[15rem] outline-none p-3' />
+                                <input value={precio} onChange={(e) => setPrecio(e.target.value)} placeholder='ESTE CAMPO ES NECESARIO' className='bg-color6 h-[3rem] w-[15rem] outline-none p-3' />
                             </form>
                             <form className='flex flex-col'>
                                 <p className='text-left w-[15rem]'>TIPO</p>
@@ -40,7 +75,7 @@ const AgregarAlmacen = ({ isOpen, onClose }) => {
                 </div>
                 <div className='w-[24rem] h-[4rem] flex items-center justify-around font-bold'>
                     <button onClick={onClose} className='flex justify-center items-center gap-4 bg-color9 text-white w-[10rem] h-[3rem]'> <IoReturnUpBackOutline /> {/*ICONO RETURN*/}REGRESAR</button>
-                    <button className='flex justify-center items-center gap-4 bg-color10 w-[10rem] h-[3rem] text-white'>
+                    <button onClick={crearProveedor} className='flex justify-center items-center gap-4 bg-color10 w-[10rem] h-[3rem] text-white'>
                         <GrLinkNext />
                         CONTINUAR
                     </button>
@@ -50,4 +85,5 @@ const AgregarAlmacen = ({ isOpen, onClose }) => {
     )
 }
 
-export default AgregarAlmacen
+
+export default AgregarAlmacen;

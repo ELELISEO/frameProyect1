@@ -128,8 +128,6 @@ const SendSpace = () => {
         <table className="table-auto w-full border-collapse">
           <thead className="bg-color1 text-white z-10">
             <tr>
-              <th className="bg-color1 sticky top-0 px-6 py-3 text-left text-xs font-medium uppercase w-[5px] h-[3rem]">
-              </th>
               <th className="bg-color1 sticky top-0 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                 ID
               </th>

@@ -16,7 +16,7 @@ const EditarEmpleado = ({isOpen, onClose}) => {
                         <p className='text-left w-[35rem]'>APELLIDOS</p>
                         <input placeholder='ESTE CAMPO ES NECESARIO' className='bg-color6 h-[3rem] w-[35rem] outline-none p-3' />
                         <p className='text-left w-[35rem]'>CONTRASEÑA</p>
-                        <input placeholder='ESTE CAMPO ES NECESARIO' className='bg-color6 h-[3rem] w-[35rem] outline-none p-3' />
+                        <input type='password' placeholder='ESTE CAMPO ES NECESARIO' className='bg-color6 h-[3rem] w-[35rem] outline-none p-3' />
                     </form>
                 </div>
                 <div className='w-[24rem] h-[4rem] flex items-center justify-around font-bold'>

@@ -16,6 +16,7 @@ import Agregar from '../components/agregar/Agregar'
 
 const PageInitial = () => {
   const [busqueda, setBusqueda] = useState("")
+  const [producto, setProducto] = useState()
   const [modBusqueda, setModBusqueda] = useState(false)
   const [vaciar, setVaciar] = useState(false)
   const [agregar, setAgregar] = useState(false)
@@ -27,7 +28,12 @@ const PageInitial = () => {
     navigate("/Charge")
   }
 
-  const handleOpen = () => {
+  const handleOpen = async () => {
+    const producto = await getProducto()
+    if (!producto) {
+      setModBusqueda(false)
+    }
+    setProducto(producto)
     setAgregar(true)
     setModBusqueda(false)
   }
@@ -37,24 +43,26 @@ const PageInitial = () => {
 
   const openModBusqueda = () => setModBusqueda(true)
 
-  const handleVaciar = async () => {
-    console.log("handleVaciar");
+  const handleVaciar =  () => {
+    setVaciar(true)
+  }
+   
+  const handleCloseVaciar = () => setVaciar(false)
 
-    const response = await fetch(`http://localhost:5000/carrito/deleteAll`, {
-      method: 'DELETE', // Indicamos que es una petición POST
+  const getProducto = async () => {
+    const id = parseInt(busqueda, 10)
+    const response = await fetch(`http://localhost:5000/products/producto/${id}`, {
+      method: 'GET', // Indicamos que es una petición POST
       headers: {
         'Content-Type': 'application/json', // Definimos que estamos enviando JSON
       },
     });
     const data = await response.json();
     if (data.status === 200) {
-      return
+      return data.mensaje
     } else
-      return
+      return null
   }
-
-  const handleCloseVaciar = () => setVaciar(false)
-
 
   return (
     <>
@@ -64,7 +72,7 @@ const PageInitial = () => {
             {seccionT.map((seccion, index) => (<Taskbar key={index} index={index} indexB={0} seccion={seccion} />))}
           </div>
           <div className='h-full w-full bg-color7 flex justify-center items-center flex-col'>
-            <SearchModal isOpen={modBusqueda} onClose={() => handleOpen()} />
+            <SearchModal isOpen={modBusqueda} onClose={() => handleOpen()}  onCloseOnly={() => setModBusqueda(false)}/>
             <form className='w-[65rem] flex justify-end'>
               <div className='relative w-[24rem]'> {/* Asegura que el contenedor sea relative */}
                 <IoSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-color2 z-50" /> {/* Posiciona el ícono */}
@@ -72,13 +80,15 @@ const PageInitial = () => {
                   placeholder='BUSQUEDA'
                   type='text'
                   name='busqueda'
+                  value={busqueda}
                   onChange={(e) => setBusqueda(e.target.value)}
                   onFocus={openModBusqueda}
+                  autoComplete="off" 
                   className='bg-color6 h-[3rem] w-[24rem] rounded-br-none rounded-tl-3xl rounded-tr-3xl rounded-bl-3xl focus:rounded-bl-none duration-75 text-end p-5 pl-12 outline-none z-40 relative'
                 /> {/* Agrega padding-left para espacio del ícono */}
               </div>
             </form>
-            <Agregar isOpen={agregar} onClose={closeModAgregar} idProducto={busqueda} />
+            {producto && <Agregar isOpen={agregar} onClose={closeModAgregar} idProducto={busqueda} nameProduct={producto.producto} priceProduct={producto.precio} clearBusqueda={() => setBusqueda("")}/>}
             <SendSpace />
             <EliminiarT isOpen={vaciar} onClose={handleCloseVaciar} />
             <div className='w-[65rem] h-[3rem] flex justify-end items-center p-6 gap-10 text-white font-bold text-lg'> {/* DIV BOTONES*/}

@@ -5,6 +5,22 @@ import { GrLinkNext } from "react-icons/gr";//CONTINUAR
 
 
 const EliminiarT = ({ isOpen, onClose }) => {
+
+    const handleVaciar = async () => {
+        console.log("handleVaciar");
+        const response = await fetch(`http://localhost:5000/carrito/deleteAll`, {
+          method: 'DELETE', // Indicamos que es una petición POST
+          headers: {
+            'Content-Type': 'application/json', // Definimos que estamos enviando JSON
+          },
+        });
+        const data = await response.json();
+        if (data.status === 200) {
+          onClose()
+        } else
+          return
+      }
+
     if (!isOpen) return null
     return (
         <>
@@ -13,7 +29,7 @@ const EliminiarT = ({ isOpen, onClose }) => {
                 <h1 className=' w-[20rem] text-2xl text-center'>SE ELIMINARAN TODOS LOS ARTICULOS</h1>
                 <div className='w-[24rem] h-[4rem] flex items-center justify-around font-bold'>
                     <button onClick={onClose} className='flex justify-center items-center gap-4 bg-color9 text-white w-[10rem] h-[3rem]'> <IoReturnUpBackOutline /> {/*ICONO RETURN*/}REGRESAR</button>
-                    <button className='flex justify-center items-center gap-4 bg-color10 w-[10rem] h-[3rem] text-white'>
+                    <button onClick={handleVaciar} className='flex justify-center items-center gap-4 bg-color10 w-[10rem] h-[3rem] text-white'>
                         <GrLinkNext />
                         CONTINUAR
                     </button>

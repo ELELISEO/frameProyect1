@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import SendSpace from '../components/sendSpace/SendSpace'
 import Taskbar from '../components/taskbar/Taskbar'
 import SearchModal from '../components/searchModal/SearchModal'
 import EliminiarT from '../components/eliminarT/EliminiarT'
@@ -9,6 +8,7 @@ import { RiUserAddLine } from 'react-icons/ri'
 import { LiaEditSolid } from 'react-icons/lia'
 import AgregarEmpleado from '../components/agregarEmpleado/AgregarEmpleado'
 import EditarEmpleado from '../components/editarEmpleado/EditarEmpleado'
+import SendSpaceEmpleado from '../components/sendSpaceEmpleado/SendSpaceEmpleado'
 
 
 const Employees = () => {
@@ -54,7 +54,7 @@ const Employees = () => {
                 /> {/* Agrega padding-left para espacio del ícono */}
               </div>
             </form>
-            <SendSpace />
+            <SendSpaceEmpleado />
             <EditarEmpleado isOpen={editar} onClose={closeModEditar} />
             <EliminiarT isOpen={vaciar} onClose={handleCloseVaciar}/>
             <div className='w-[65rem] h-[3rem] flex justify-end gap-10'>
