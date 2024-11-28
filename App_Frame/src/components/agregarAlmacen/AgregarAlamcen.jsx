@@ -7,7 +7,6 @@ const AgregarAlmacen = ({ isOpen, onClose }) => {
     const [producto, setProducto] = useState("")
     const [proveedor, setProveedor] = useState("")
     const [precio, setPrecio] = useState("")
-    const [cantidad, setcantidad] = useState("")
 
     
 
@@ -19,7 +18,7 @@ const AgregarAlmacen = ({ isOpen, onClose }) => {
             headers: {
                 'Content-Type': 'application/json', // Definimos que estamos enviando JSON
             },
-            body: JSON.stringify({ contacto: contacto, producto: producto, proveedor: proveedor, cantidad: cantidad, precio: precio }),
+            body: JSON.stringify({ contacto: contacto, producto: producto, proveedor: proveedor, cantidad: 0, precio: precio }),
         });
         const data = await response.json();
         console.log(data);

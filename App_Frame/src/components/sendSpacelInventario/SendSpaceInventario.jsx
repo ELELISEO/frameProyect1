@@ -56,8 +56,8 @@ const SendSpaceInventario = () => {
           </thead>
           <tbody>
             {ventas.map((venta, index) => (
-              <RowProductsInventario key={index} id={venta.id} producto={venta.producto} stock={venta.stock} venta={venta.cantidad}
-              almacen={venta.almacen_almacen} total={venta.precio}
+              <RowProductsInventario key={index} id={venta.id_carrito} producto={venta.producto} stock={venta.stock} venta={venta.venta_cantidad}
+              almacen={venta.almacen_almacen} total={venta.total_carrito}
               />
             ))}
           </tbody>
