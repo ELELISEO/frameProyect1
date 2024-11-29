@@ -69,13 +69,22 @@ const PageInitial = () => {
       <main className='h-screen w-screen'>
         <section className='flex h-full w-full'>
           <div className='flex flex-col justify-center items-center bg-color1'>
+          <div className=" bg-color2 w-32 h-32 rounded-full justify-start mb-10">
+                  {" "}
+                  {/*LOGO*/}
+                  <img
+                    src="/logoMisc.png"
+                    alt="Logo"
+                    className="h-32 w-32 rounded-full object-contain"
+                  />
+                </div>
             {seccionT.map((seccion, index) => (<Taskbar key={index} index={index} indexB={0} seccion={seccion} />))}
           </div>
           <div className='h-full w-full bg-color7 flex justify-center items-center flex-col'>
             <SearchModal isOpen={modBusqueda} onClose={() => handleOpen()}  onCloseOnly={() => setModBusqueda(false)}/>
             <form className='w-[65rem] flex justify-end'>
-              <div className='relative w-[24rem]'> {/* Asegura que el contenedor sea relative */}
-                <IoSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-color2 z-50" /> {/* Posiciona el ícono */}
+              <div className='relative w-[24rem]'> 
+                <IoSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-color1 z-50" /> 
                 <input
                   placeholder='BUSQUEDA'
                   type='text'

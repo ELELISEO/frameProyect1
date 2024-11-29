@@ -15,8 +15,8 @@ const Taskbar = ({ seccion, indexB, index }) => {
     return (
         <>
             <div className='w-[18rem] h-auto text-white text-2xl'>
-                <div className={`flex items-center text-left h-[5rem] ${indexB === index ? "bg-color3 h-[5rem]" : ''}`}>
-                    <button onClick={handleTaskbar} className={`h-[5rem] w-full flex justify-start items-center hover:border-r-4 border-colo3  transition duration-75`}>{seccion}</button>
+                <div className={`pl-10 flex items-center text-left h-[5rem] ${indexB === index ? "bg-color3 h-[5rem]" : ''}`}>
+                    <button onClick={handleTaskbar} className={`h-[5rem] w-full flex justify-start items-center hover:border-r-4 border-color3  transition duration-75`}>{seccion}</button>
                 </div>
             </div>
         </>
