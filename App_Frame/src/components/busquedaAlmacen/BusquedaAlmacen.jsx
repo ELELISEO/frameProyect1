@@ -43,6 +43,7 @@ const editarCantidad = async () => {
     console.log(data);
   } catch (error) {
     console.error('Error:', error);
+    alert(error)
   }
   console.log("Ejecutando onClose");
   setCount(0);

@@ -44,16 +44,19 @@ const Employees = () => {
           <SearchModal isOpen={modBusqueda} onClose={closeModBusqeuda}/>
           <form className='w-[65rem] flex justify-between'>
             <button onClick={handleAgregar} type='button' className='bg-color8 h-[3rem] w-[11rem] text-white font-bold text-lg flex items-center gap-4 justify-center'><RiUserAddLine />AGREGAR</button>
-            <div className='relative w-[24rem]'> {/* Asegura que el contenedor sea relative */}
+            <form className='w-[65rem] flex justify-end'>
+              <div className='relative w-[24rem]'> {/* Asegura que el contenedor sea relative */}
                 <IoSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-color2 z-50" /> {/* Posiciona el ícono */}
                 <input
                   placeholder='BUSQUEDA'
                   type='text'
                   name='busqueda'
+                  autoComplete="off" 
                   onFocus={openModBusqueda}
-                  className='bg-color6 h-[3rem] w-[24rem] rounded-br-none rounded-tl-3xl rounded-tr-3xl rounded-bl-3xl focus:rounded-bl-none duration-75 text-end p-5 pl-12 outline-none z-4  0 relative'
+                  className='bg-color6 h-[3rem] w-[24rem] rounded-br-none rounded-tl-3xl rounded-tr-3xl rounded-bl-3xl focus:rounded-bl-none duration-75 text-end p-5 pl-12 outline-none z-40 relative'
                 /> {/* Agrega padding-left para espacio del ícono */}
               </div>
+            </form>
             </form>
             <SendSpaceEmpleado />
             <EditarEmpleado isOpen={editar} onClose={closeModEditar} />

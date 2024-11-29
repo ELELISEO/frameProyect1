@@ -43,6 +43,7 @@ const Inventory = () => {
                   placeholder='BUSQUEDA'
                   type='text'
                   name='busqueda'
+                  autoComplete="off" 
                   onFocus={openModBusqueda}
                   className='bg-color6 h-[3rem] w-[24rem] rounded-br-none rounded-tl-3xl rounded-tr-3xl rounded-bl-3xl focus:rounded-bl-none duration-75 text-end p-5 pl-12 outline-none z-40 relative'
                 /> {/* Agrega padding-left para espacio del ícono */}
