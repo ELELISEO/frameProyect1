@@ -6,9 +6,9 @@ const SearchModal = ({ isOpen, onClose, onCloseOnly,  presionado }) => {
   return (
     <>
       <div onClick={onCloseOnly} className='h-full w-[78rem] bg-black opacity-50 absolute z-40'></div>
-      <div onClick={onClose} className='h-[3rem] w-[24rem] bg-white fixed z-50 ml-[41rem] mb-[29.5rem] rounded-bl-3xl'>
+      <div onClick={onClose} className='h-[3rem] w-[24rem] bg-white text-center flex items-center justify-center fixed z-50 ml-[41rem] mb-[29.5rem] rounded-bl-3xl'>
         {presionado}
-        SearchModal
+        BUSCAR ID
       </div>
 
     </>
