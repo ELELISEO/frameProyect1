@@ -5,12 +5,12 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-        'color1': '#919191',
+        'color1': '#898eb6',
         'color2': '#ADADAD',
-        'color3': '#C8C8C8',
+        'color3': '#5651ab',
         'color4': '#E4E4E4',
         'color5': '#FFFFFF',
-        'color6': '#D9D9D9',
+        'color6': '#dfebfb',
         'color7':'#EDEDED',
         'color8': '#419AFF',
         'color9': '#E61726',

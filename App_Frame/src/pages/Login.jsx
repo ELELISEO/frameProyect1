@@ -60,7 +60,7 @@ export const Login = () => {
          border-color6"> {/*DIV WRAP/LINE*/}
               <div className="w-[35rem] h-[16rem] flex rounded-[15px] rounded-b-none items-center justify-start
         p-[6rem] gap-14"> {/*DIV TITULO Y LOGO*/}
-                <div className="bg-color2 w-32 h-32 rounded-full justify-start "> {/*LOGO*/}
+                <div className="bg-color5 w-32 h-32 rounded-full justify-start "> {/*LOGO*/}
 
                 </div>
                 <h2 className="text-white font-bold text-4xl flex text-right"> {/*TITULO*/}
